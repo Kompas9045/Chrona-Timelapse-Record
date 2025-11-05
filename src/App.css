@@ -1,0 +1,430 @@
+/* 引入Garet-Book字体 */
+@font-face {
+  font-family: 'Garet';
+  src: url('/Garet-Book.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 基础样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Garet', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background-color: #080808;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+#root {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  padding: 2rem;
+  background: #18181c;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(223, 227, 29, 0.1);
+}
+
+/* 标题样式 */
+h1 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(135deg, #dfe31d, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
+}
+
+/* 控制区域样式 */
+.controls {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* 设置区域样式 */
+.settings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+  background: rgba(24, 24, 28, 0.8);
+  border-radius: 12px;
+  border: 1px solid rgba(223, 227, 29, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+.settings label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.settings input {
+  padding: 10px 12px;
+  border: 2px solid rgba(223, 227, 29, 0.3);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: rgba(8, 8, 8, 0.8);
+  color: #ffffff;
+}
+
+/* 新增select元素样式 */
+.settings select {
+  padding: 10px 12px;
+  border: 2px solid rgba(223, 227, 29, 0.3);
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: rgba(8, 8, 8, 0.8);
+  color: #ffffff;
+  cursor: pointer;
+  appearance: none;
+  /* 自定义下拉箭头 */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dfe31d' width='16px' height='16px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 40px;
+}
+
+.settings input:focus,
+.settings select:focus {
+  outline: none;
+  border-color: #dfe31d;
+  box-shadow: 0 0 0 3px rgba(223, 227, 29, 0.2);
+}
+
+.settings input:disabled,
+.settings select:disabled {
+  background-color: rgba(24, 24, 28, 0.6);
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* 预览区域样式 */
+.preview {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.preview video {
+  width: 100%;
+  max-width: 640px;
+  border-radius: 12px;
+  border: 2px solid rgba(223, 227, 29, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.preview video:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(223, 227, 29, 0.2);
+  border-color: rgba(223, 227, 29, 0.4);
+}
+
+/* 操作按钮区域样式 */
+.actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* 按钮样式 */
+button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* 不同类型按钮的样式 */
+button:not(:disabled) {
+  background: linear-gradient(135deg, #dfe31d, #c8cc1a);
+  color: #080808;
+  font-weight: 600;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(223, 227, 29, 0.4);
+}
+
+button:not(:disabled):active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* 使用源分辨率按钮的特殊样式 */
+button:nth-child(3) {
+  background: linear-gradient(135deg, #ffffff, #e0e0e0);
+  color: #080808;
+}
+
+button:nth-child(3):not(:disabled):hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+/* 状态指示器样式 */
+.settings > div:last-child {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-weight: 600;
+  color: #dfe31d;
+  padding: 10px;
+  background: rgba(223, 227, 29, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(223, 227, 29, 0.2);
+}
+
+/* 录制状态指示器 */
+.app::after {
+  content: '';
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #dfe31d;
+  animation: pulse 1.5s infinite;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.app[data-recording='true']::after {
+  opacity: 1;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(223, 227, 29, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(223, 227, 29, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(223, 227, 29, 0);
+  }
+}
+
+/* 编码状态样式 */
+.encoding-status {
+  background: rgba(24, 24, 28, 0.9);
+  border: 1px solid rgba(223, 227, 29, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+}
+
+.encoding-status p {
+  color: #dfe31d;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.encoding-status progress {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(8, 8, 8, 0.8);
+  border: none;
+}
+
+.encoding-status progress::-webkit-progress-bar {
+  background: rgba(8, 8, 8, 0.8);
+  border-radius: 4px;
+}
+
+.encoding-status progress::-webkit-progress-value {
+  background: linear-gradient(90deg, #dfe31d, #ffffff);
+  border-radius: 4px;
+}
+
+.encoding-status progress::-moz-progress-bar {
+  background: linear-gradient(90deg, #dfe31d, #ffffff);
+  border-radius: 4px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .app {
+    padding: 1.5rem;
+    gap: 20px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .settings {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .controls,
+  .actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  button {
+    width: 100%;
+  }
+  
+  .preview video {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  #root {
+    padding: 0.5rem;
+  }
+  
+  .app {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+}
+
+/* 高级设置按钮样式 */
+.advanced-toggle {
+  grid-column: 1 / -1;
+  margin-top: 15px;
+  background: linear-gradient(135deg, rgba(223, 227, 29, 0.2), rgba(223, 227, 29, 0.1)) !important;
+  color: #dfe31d !important;
+  border: 1px solid rgba(223, 227, 29, 0.3) !important;
+  transition: all 0.3s ease;
+}
+
+.advanced-toggle:not(:disabled):hover {
+  background: linear-gradient(135deg, rgba(223, 227, 29, 0.3), rgba(223, 227, 29, 0.2)) !important;
+  box-shadow: 0 4px 12px rgba(223, 227, 29, 0.2) !important;
+  border-color: rgba(223, 227, 29, 0.5) !important;
+}
+
+/* 高级设置区域样式 */
+.advanced {
+  grid-column: 1 / -1;
+  margin-top: 15px;
+  padding: 20px;
+  background: rgba(8, 8, 8, 0.6);
+  border: 1px solid rgba(223, 227, 29, 0.2);
+  border-radius: 10px;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 高级设置内的字段组 */
+.advanced-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+/* 高级设置中的提示文本 */
+.advanced-hint {
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 5px;
+  font-style: italic;
+}
+
+/* 高级设置中的状态信息 */
+.advanced-stats {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(223, 227, 29, 0.1);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  font-size: 0.9em;
+}
+
+.advanced-stats > div {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 错误提示样式 */
+.fallback-notice {
+  color: #ff4d4f;
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(255, 77, 79, 0.1);
+  border: 1px solid rgba(255, 77, 79, 0.3);
+  border-radius: 6px;
+}
+
+/* 响应式设计优化 */
+@media (max-width: 768px) {
+  /* ... 其他响应式样式保持不变 ... */
+  
+  .advanced-fields,
+  .advanced-stats {
+    grid-template-columns: 1fr;
+  }
+}
