@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Font files not included according to EULA
+public/Garet-Book.woff2
+public/Type-Forward_FreeGaret_EULA.pdf

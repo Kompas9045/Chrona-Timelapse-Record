@@ -167,7 +167,9 @@ function App() {
               </ul>
             </div>
             <div style={{ marginTop: 8 }}>
-              <strong>许可证：</strong> 本软件遵循 <a href="https://opensource.org/license/agpl-v3">AGPLv3</a> 许可证，第三方组件遵循其各自协议，如上所示（源代码正在整理中，请稍候几日）。
+              <strong>许可证：</strong> 本软件遵循 <a href="https://opensource.org/license/agpl-v3">AGPLv3</a> 许可证，第三方组件遵循其各自协议，如上所示。<br />
+              <strong>隐私：</strong> 录制的屏幕视频将完全在您的计算机上处理，本网站属静态网站，没有任何跟踪程序或上传动作。<br />
+              <strong>源代码：</strong> 源代码托管在 <a href="https://github.com/Kompas9045/Chrona-Timelapse-Record" target="_blank" rel="noopener noreferrer">GitHub</a> 上。
             </div>
           </div>
         )}
